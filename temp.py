@@ -1,8 +1,9 @@
 vec = []
 import queue
 import networkx as nw
-import AC_3 as ac3
 import AC_1 as ac1
+import AC_2 as ac2
+import AC_3 as ac3
 
 lim = 11
 
@@ -37,6 +38,6 @@ if __name__ == '__main__':
     constraints[(2, 1)] = 4+lim
     constraints[(2, 0)] = 6+lim
 
-    print(ac1.AC1(g, constraints, domain, 1,1,1))
+    print(ac2.AC2(g, constraints, domain, 1,1,1))
     print(domain)
 

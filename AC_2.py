@@ -30,6 +30,7 @@ def solutionExists(domain):
 
 def AC2(g, constraints, domain, node, edge, domainSize):
     arcs = []
+    node = len(domain)
 
     for i in g.edges:
         arcs.append(i)
@@ -50,20 +51,22 @@ def AC2(g, constraints, domain, node, edge, domainSize):
 
 
         while q.empty() is False:
-            top = q.get()
-            xi = top[0][0]
-            xj = top[0][1]
-            #print(top)
-            constraint = top[1]
-            if(revise(xi, xj, constraint, domain) == True):
-                if(len(domain[xi]) == 0):
-                    return False
-                for k in g.edges:
-                    if(k[0] == xi and k[1] != xj):
-                        q.put([(k[1], k[0]), constraints[k]])
-                    elif(k[1]==xi and k[0] != xj):
-                        q.put([(k[0], k[1]), constraints[k]])
+            while q.empty() is False:
+                top = q.get()
+                xi = top[0][0]
+                xj = top[0][1]
+                constraint = top[1]
+                if(revise(xi, xj, constraint, domain) == True):
+                    if(len(domain[xi]) == 0):
+                        return False
+                    for k in g.edges:
+                        if(k[0] == xi and k[1] != xj and k[1]<=nod):
+                            q.put([(k[1], k[0]), constraints[k]])
+                        elif(k[1]==xi and k[0] != xj and k[0]<=nod):
+                            q.put([(k[0], k[1]), constraints[k]])
 
+            while q1.empty() is False:
+                q.put(q1.get())
 
 
     return solutionExists(domain)
