@@ -76,30 +76,33 @@ def visualize():
     xAc1 = []
     yAc1 = []
 
-    for node in range(1, 200):
-        print(node)
-        xAc1.append(node)
+    for node in range(1, 50, 10):
         mini = node
         maxi = (node*(node+1))//2
-        yAc1.append(executeAC1(node, random.randint(mini, maxi), 20))
+        edge = random.randint(mini, maxi)
+        xAc1.append(node)
+        print(node)
+        yAc1.append(executeAC1(node, edge, 100))
 
     xAc2 = []
     yAc2 = []
-    for node in range(1, 200):
-        xAc2.append(node)
+    for node in range(1, 50, 10):
         mini = node
         maxi = (node*(node+1))//2
+        edge = random.randint(mini, maxi)
+        xAc2.append(node)
         print(mini, maxi)
-        yAc2.append(executeAC2(node, random.randint(mini, maxi), 20))
+        yAc2.append(executeAC2(node, edge, 100))
 
     xAc3 = []
     yAc3 = []
-    for node in range(1, 200):
-        xAc3.append(node)
+    for node in range(1, 50, 10):
         mini = node
         maxi = (node * (node + 1)) // 2
+        edge = random.randint(mini, maxi)
+        xAc3.append(node)
         print(mini, maxi)
-        yAc3.append(executeAC3(node, random.randint(mini, maxi), 20))
+        yAc3.append(executeAC3(node, edge, 100))
 
     plt.plot(xAc1, yAc1, color='g', label='AC 1')
     plt.plot(xAc2, yAc2, color='b', label='AC 2')
