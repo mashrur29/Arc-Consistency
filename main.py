@@ -112,6 +112,6 @@ def visualize():
     #plt.savefig('foo.png')
 
 if __name__ == '__main__':
-    visualize()
-    executeAC2(30, 100, 100)
+    #visualize()
+    print(executeAC2(30, 100, 100))
 
