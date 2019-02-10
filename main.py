@@ -2,6 +2,7 @@ import numpy as np
 import random
 import networkx as nw
 import AC_3 as ac3
+import AC_1 as ac1
 import time
 
 lim = 11
@@ -27,8 +28,7 @@ def executeAC3(node, edge, domainSize):
 
     start_time = time.time()
     print(ac3.AC3(g, constraints, domain, node, edge, domainSize))
-    print('Execution Time:')
-    print((time.time() - start_time) * 1000)
+    print('Execution Time: ', ((time.time() - start_time) * 1000))
 
 
 def executeAC1(node, edge, domainSize):
@@ -46,10 +46,9 @@ def executeAC1(node, edge, domainSize):
             domain[i][j] = randInt()
 
     start_time = time.time()
-    print(ac3.AC3(g, constraints, domain, node, edge, domainSize))
-    print('Execution Time:')
-    print((time.time() - start_time) * 1000)
+    print(ac1.AC1(g, constraints, domain, node, edge, domainSize))
+    print('Execution Time: ', ((time.time() - start_time) * 1000))
 
 if __name__ == '__main__':
-    executeAC3(30, 100, 100)
+    executeAC1(30, 100, 100)
 

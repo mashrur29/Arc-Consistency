@@ -1,7 +1,6 @@
 import queue
 import constraints
 
-
 def revise(xi, xj, constraint, domain):
     revised = False
     temp = []
@@ -13,8 +12,7 @@ def revise(xi, xj, constraint, domain):
         for y in domain[xj]:
             if(constraints.satisfy(x, y, constraint) == True):
                 single = True
-        if(xi==1 and xj==2):
-            print(x, temp)
+
         if(single == False):
             domain[xi].remove(x)
             revised = True

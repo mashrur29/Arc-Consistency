@@ -20,7 +20,7 @@ def satisfy(a, b, constraint):
         return True
     elif(constraint==5 and ta*2 >= tb):
         return True
-    elif(constraint==6 and divmod(ta, tb)==1):
+    elif(constraint==6 and ta<=3*tb):
         return True
     elif(constraint==7 and ta!=tb):
         return True
