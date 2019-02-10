@@ -109,6 +109,7 @@ def visualize():
     plt.title('Comparison of Arc Consistency Algorithm')
     plt.legend(loc='upper left')
     plt.show()
+    #plt.savefig('foo.png')
 
 if __name__ == '__main__':
     visualize()
