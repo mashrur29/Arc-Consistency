@@ -57,8 +57,6 @@ def AC2(g, constraints, domain, node, edge, domainSize):
                 xj = top[0][1]
                 constraint = top[1]
                 if(revise(xi, xj, constraint, domain) == True):
-                    if(len(domain[xi]) == 0):
-                        return False
                     for k in g.edges:
                         if(k[0] == xi and k[1] != xj and k[1]<=nod):
                             q.put([(k[1], k[0]), constraints[k]])

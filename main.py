@@ -107,11 +107,12 @@ def visualize():
     plt.xlabel('Number of Node')
     plt.ylabel('Performance (sec)')
     plt.title('Comparison of Arc Consistency Algorithm')
+    plt.suptitle('@mashrur')
     plt.legend(loc='upper left')
+    plt.savefig('foo.png')
     plt.show()
-    #plt.savefig('foo.png')
 
 if __name__ == '__main__':
-    #visualize()
+    visualize()
     print(executeAC2(30, 100, 100))
 
