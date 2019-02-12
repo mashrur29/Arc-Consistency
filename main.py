@@ -13,15 +13,6 @@ lim = 11
 def randInt():
     return random.randint(1, 100)
 
-def executeAC3(node, edge, domainSize, g, constraints, domain):
-    start_time = time.time()
-    ac3.AC3(g, constraints, domain, node, edge, domainSize)
-    return ((time.time() - start_time) * 1000)
-
-def executeAC4(node, edge, domainSize, g, constraints, domain):
-    start_time = time.time()
-    ac4.AC4(g, constraints, domain, node, edge, domainSize)
-    return ((time.time() - start_time) * 1000)
 
 def executeAC1(node, edge, domainSize, g, constraints, domain):
     start_time = time.time()
@@ -31,6 +22,16 @@ def executeAC1(node, edge, domainSize, g, constraints, domain):
 def executeAC2(node, edge, domainSize, g, constraints, domain):
     start_time = time.time()
     ac2.AC2(g, constraints, domain, node, edge, domainSize)
+    return ((time.time() - start_time) * 1000)
+
+def executeAC3(node, edge, domainSize, g, constraints, domain):
+    start_time = time.time()
+    ac3.AC3(g, constraints, domain, node, edge, domainSize)
+    return ((time.time() - start_time) * 1000)
+
+def executeAC4(node, edge, domainSize, g, constraints, domain):
+    start_time = time.time()
+    ac4.AC4(g, constraints, domain, node, edge, domainSize)
     return ((time.time() - start_time) * 1000)
 
 def generateCSP(node):
