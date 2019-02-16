@@ -1,5 +1,5 @@
 import queue
-import constraints
+import constraints_029
 
 def revise(xi, xj, constraint, domain):
     revised = False
@@ -11,7 +11,7 @@ def revise(xi, xj, constraint, domain):
     for x in temp:
         single = False
         for y in domain[xj]:
-            if(constraints.satisfy(x, y, constraint) == True):
+            if(constraints_029.satisfy(x, y, constraint) == True):
                 single = True
             #print('checking: ', x, ' ', y, ' ', constraints.satisfy(x, y, constraint))
 

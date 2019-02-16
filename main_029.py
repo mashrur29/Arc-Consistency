@@ -1,10 +1,10 @@
 import random
-import AC_1 as ac1
-import AC_2 as ac2
-import AC_3 as ac3
-import AC_4 as ac4
+import AC_1_029 as ac1
+import AC_2_029 as ac2
+import AC_3_029 as ac3
+import AC_4_029 as ac4
 import time
-import visualize as vis
+import visualize_029 as vis
 
 lim = 11
 
