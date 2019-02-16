@@ -223,7 +223,7 @@ def visualize_density(sz):
     plt.title('Comparison of Arc Consistency Algorithm')
     plt.suptitle('@mashrur')
     plt.legend(loc='upper left')
-    #plt.savefig('density_large_domain.png')
+    plt.savefig('density_small_domain.png')
     plt.show()
 
 def visualize_domainReduction(domainSiz):
