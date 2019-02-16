@@ -39,6 +39,6 @@ if __name__ == '__main__':
     constraints[(2, 1)] = 4+lim
     constraints[(2, 0)] = 6+lim
 
-    print(ac4.AC4(g, constraints, domain, 3, 3, 3))
+    print(ac2.AC2(g, constraints, domain, 3, 3, 3))
     print(domain)
 

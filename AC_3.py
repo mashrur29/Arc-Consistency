@@ -1,6 +1,7 @@
 import queue
 import constraints
 
+
 def revise(xi, xj, constraint, domain):
     revised = False
     temp = []
