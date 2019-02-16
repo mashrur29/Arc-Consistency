@@ -1,3 +1,4 @@
+import numpy
 import random
 import networkx as nw
 import matplotlib.pyplot as plt
@@ -147,7 +148,7 @@ def visualize_edge():
     plt.show()
 
 
-def visualize_density():
+def visualize_density(sz):
     xAc1 = []
     yAc1 = []
     xAc2 = []
@@ -156,23 +157,24 @@ def visualize_density():
     yAc3 = []
     xAc4 = []
     yAc4 = []
+    node = 100
 
-    for edge in range(10, 51, 10):
-        print(edge)
-        xAc1.append(edge)
-        xAc2.append(edge)
-        xAc3.append(edge)
-        xAc4.append(edge)
+    for density in numpy.arange(0.1, 1.1, 0.3):
+        xAc1.append(density)
+        xAc2.append(density)
+        xAc3.append(density)
+        xAc4.append(density)
 
         timeAc1 = 0
         timeAc2 = 0
         timeAc3 = 0
         timeAc4 = 0
-        domainSize = 100
-        node = 10
+        domainSize = sz
         constraints = {}
         domain = [[0 for x in range(domainSize)] for y in range(node)]  # node x domainSize size list
-
+        edge = node//density
+        edge = int(edge)
+        print('lol', density, edge)
         g = nw.gnm_random_graph(node, edge, False)
 
         for i in g.edges:
@@ -181,7 +183,7 @@ def visualize_density():
 
         for i in range(node):
             for j in range(domainSize):
-                domain[i][j] = randInt()
+                domain[i][j] = randInt(-1100, 1100)
 
         timeAc1 += executeAC1(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
         timeAc2 += executeAC2(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
@@ -193,14 +195,15 @@ def visualize_density():
         yAc3.append(timeAc3)
         yAc4.append(timeAc4)
 
+
     plt.plot(xAc1, yAc1, color='g', label='AC 1')
     plt.plot(xAc2, yAc2, color='b', label='AC 2')
     plt.plot(xAc3, yAc3, color='r', label='AC 3')
     plt.plot(xAc4, yAc4, color='orange', label='AC 4')
-    plt.xlabel('Number of Edge')
+    plt.xlabel('Graph Density')
     plt.ylabel('Performance (msec)')
     plt.title('Comparison of Arc Consistency Algorithm')
     plt.suptitle('@mashrur')
     plt.legend(loc='upper left')
-    # plt.savefig('foo_edge.png')
+    plt.savefig('density_large_domain.png')
     plt.show()

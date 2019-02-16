@@ -33,7 +33,7 @@ def executeAC4(node, edge, domainSize, g, constraints, domain):
     return ((time.time() - start_time) * 1000)
 
 if __name__ == '__main__':
-    vis.visualize_nodes(20)
+    vis.visualize_density(100)
     #vis.visualize_edge()
     print('---- DONE ----')
 
