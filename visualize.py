@@ -89,7 +89,7 @@ def visualize_nodes(domainSiz):
     plt.show()
 
 
-def visualize_edge():
+def visualize_edge(domainSz):
     xAc1 = []
     yAc1 = []
     xAc2 = []
@@ -99,7 +99,17 @@ def visualize_edge():
     xAc4 = []
     yAc4 = []
 
-    for edge in range(10, 51, 10):
+    xAc1.append(0)
+    xAc2.append(0)
+    xAc3.append(0)
+    xAc4.append(0)
+
+    yAc1.append(0)
+    yAc2.append(0)
+    yAc3.append(0)
+    yAc4.append(0)
+
+    for edge in range(0, 510, 100):
         print(edge)
         xAc1.append(edge)
         xAc2.append(edge)
@@ -110,28 +120,34 @@ def visualize_edge():
         timeAc2 = 0
         timeAc3 = 0
         timeAc4 = 0
-        domainSize = 100
-        node = 10
-        constraints = {}
-        domain = [[0 for x in range(domainSize)] for y in range(node)]  # node x domainSize size list
+        domainSize = domainSz
+        node = 100
 
-        g = nw.gnm_random_graph(node, edge, False)
+        for p in range(10):
+            constraints = {}
+            domain = [[0 for x in range(domainSize)] for y in range(node)]  # node x domainSize size list
 
-        for i in g.edges:
-            constraints[i] = random.randint(0, 10)
-            constraints[(i[1], i[0])] = constraints[i] + lim
+            g = nw.gnm_random_graph(node, edge, False)
 
-        for i in range(node):
-            for j in range(domainSize):
-                domain[i][j] = randInt(1, 100)
+            for i in g.edges:
+                constraints[i] = random.randint(0, 10)
+                constraints[(i[1], i[0])] = constraints[i] + lim
 
-
-        timeAc1 += executeAC1(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
-        timeAc2 += executeAC2(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
-        timeAc3 += executeAC3(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
-        timeAc4 += executeAC4(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
+            for i in range(node):
+                for j in range(domainSize):
+                    domain[i][j] = randInt(1, 100)
 
 
+            timeAc1 += executeAC1(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
+            timeAc2 += executeAC2(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
+            timeAc3 += executeAC3(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
+            timeAc4 += executeAC4(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
+
+
+        timeAc1 /= 10
+        timeAc2 /= 10
+        timeAc3 /= 10
+        timeAc4 /= 10
         yAc1.append(timeAc1)
         yAc2.append(timeAc2)
         yAc3.append(timeAc3)
@@ -146,7 +162,7 @@ def visualize_edge():
     plt.title('Comparison of Arc Consistency Algorithm')
     plt.suptitle('@mashrur')
     plt.legend(loc='upper left')
-    # plt.savefig('foo_edge.png')
+    plt.savefig('edge_small_domain.png')
     plt.show()
 
 
