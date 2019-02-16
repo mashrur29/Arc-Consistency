@@ -85,7 +85,7 @@ def visualize_nodes(domainSiz):
     plt.title('Comparison of Arc Consistency Algorithm')
     plt.suptitle('@mashrur')
     plt.legend(loc='upper left')
-    plt.savefig('node_variable_sized_domain.png')
+    #plt.savefig('node_variable_sized_domain.png')
     plt.show()
 
 
@@ -125,10 +125,12 @@ def visualize_edge():
             for j in range(domainSize):
                 domain[i][j] = randInt(1, 100)
 
+
         timeAc1 += executeAC1(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
         timeAc2 += executeAC2(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
         timeAc3 += executeAC3(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
         timeAc4 += executeAC4(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
+
 
         yAc1.append(timeAc1)
         yAc2.append(timeAc2)
@@ -205,5 +207,5 @@ def visualize_density(sz):
     plt.title('Comparison of Arc Consistency Algorithm')
     plt.suptitle('@mashrur')
     plt.legend(loc='upper left')
-    plt.savefig('density_large_domain.png')
+    #plt.savefig('density_large_domain.png')
     plt.show()
