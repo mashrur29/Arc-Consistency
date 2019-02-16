@@ -209,3 +209,72 @@ def visualize_density(sz):
     plt.legend(loc='upper left')
     #plt.savefig('density_large_domain.png')
     plt.show()
+
+def visualize_domainReduction(domainSiz):
+    xAc1 = []
+    yAc1 = []
+    xAc2 = []
+    yAc2 = []
+    xAc3 = []
+    yAc3 = []
+    xAc4 = []
+    yAc4 = []
+
+    for node in range(1, 101, 20):
+        print(node)
+        xAc1.append(node)
+        xAc2.append(node)
+        xAc3.append(node)
+        xAc4.append(node)
+
+        csp = generateCSP(node, domainSiz)
+        g = csp[0]
+        constraints = csp[1]
+        domain = csp[2]
+        edge = csp[3]
+        domainSize = csp[4]
+        initSizeAC1 = node*domainSize
+        initSizeAC2 = node*domainSize
+        initSizeAC3 = node*domainSize
+        initSizeAC4 = node*domainSize
+        finalSizeAC1 = 0
+        finalSizeAC2 = 0
+        finalSizeAC3 = 0
+        finalSizeAC4 = 0
+
+        domain1 = deepcopy(domain)
+        domain2 = deepcopy(domain)
+        domain3 = deepcopy(domain)
+        domain4 = deepcopy(domain)
+        executeAC1(node, edge, domainSize, deepcopy(g), deepcopy(constraints), domain1)
+        executeAC2(node, edge, domainSize, deepcopy(g), deepcopy(constraints), domain2)
+        executeAC3(node, edge, domainSize, deepcopy(g), deepcopy(constraints), domain3)
+        executeAC4(node, edge, domainSize, deepcopy(g), deepcopy(constraints), domain4)
+        for p in range(node):
+            finalSizeAC1 += len(domain1[p])
+            finalSizeAC2 += len(domain2[p])
+            finalSizeAC3 += len(domain3[p])
+            finalSizeAC4 += len(domain4[p])
+
+        sizeAc1 = abs((finalSizeAC1-initSizeAC1)/initSizeAC1)
+        sizeAc2 = abs((finalSizeAC2-initSizeAC2)/initSizeAC2)
+        sizeAc3 = abs((finalSizeAC3-initSizeAC3)/initSizeAC3)
+        sizeAc4 = abs((finalSizeAC4-initSizeAC4)/initSizeAC4)
+
+        print('lol', sizeAc1, sizeAc2, sizeAc3, sizeAc4)
+        yAc1.append(sizeAc1)
+        yAc2.append(sizeAc2)
+        yAc3.append(sizeAc3)
+        yAc4.append(sizeAc4)
+
+    plt.plot(xAc1, yAc1, color='g', label='AC 1')
+    plt.plot(xAc2, yAc2, color='b', label='AC 2')
+    plt.plot(xAc3, yAc3, color='r', label='AC 3')
+    plt.plot(xAc4, yAc4, color='orange', label='AC 4')
+    plt.xlabel('Number of Node')
+    plt.ylabel('Domain Reduction')
+    plt.title('Comparison of Arc Consistency Algorithm')
+    plt.suptitle('@mashrur')
+    plt.legend(loc='upper left')
+    plt.savefig('node_domain_reduction.png')
+    plt.show()
