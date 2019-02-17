@@ -190,7 +190,7 @@ def visualize_density(sz):
         domainSize = sz
         constraints = {}
         domain = [[0 for x in range(domainSize)] for y in range(node)]  # node x domainSize size list
-        edge = node//density
+        edge = (density*(node*(node-1)))//2
         edge = int(edge)
         print('lol', density, edge)
         g = nw.gnm_random_graph(node, edge, False)
@@ -223,7 +223,7 @@ def visualize_density(sz):
     plt.title('Comparison of Arc Consistency Algorithm')
     plt.suptitle('@mashrur')
     plt.legend(loc='upper left')
-    plt.savefig('density_small_domain.png')
+    plt.savefig('density_large_domain.png')
     plt.show()
 
 def visualize_domainReduction(domainSiz):
