@@ -2,8 +2,10 @@ import queue
 import constraints_029 as cons
 from copy import deepcopy
 
+cnt = 0
 
 def revise(xi, xj, constraint, domain):
+    global cnt
     revised = False
     temp = []
     for i in domain[xi]:
@@ -14,6 +16,7 @@ def revise(xi, xj, constraint, domain):
         for y in domain[xj]:
             if(cons.constraints.satisfy(x, y, constraint) == True):
                 single = True
+                cnt += 1
 
         if(single == False):
             domain[xi].remove(x)
@@ -32,6 +35,8 @@ def solutionExists(domain):
     return True
 
 def AC4(g, constraints, domain, node, edge, domainSize):
+    global cnt
+    cnt = 0
     q = queue.Queue()
     s = {}
     counter = {}
@@ -63,6 +68,7 @@ def AC4(g, constraints, domain, node, edge, domainSize):
                 if(cons.satisfy(ai, aj, constraints[(vi, vj)]) == True):
                     counter[(vi, ai, vj)] += 1
                     s[(vj, aj)].append((vi, ai))
+                    cnt += 1
 
             if (counter[(vi, ai, vj)] == 0):
                 q.put((vi, ai))

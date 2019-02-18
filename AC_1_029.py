@@ -1,7 +1,10 @@
 import queue
 import constraints_029
 
+cnt = 0
+
 def revise(xi, xj, constraint, domain):
+    global cnt
     revised = False
     temp = []
     for i in domain[xi]:
@@ -13,6 +16,7 @@ def revise(xi, xj, constraint, domain):
         for y in domain[xj]:
             if(constraints_029.satisfy(x, y, constraint) == True):
                 single = True
+                cnt += 1
             #print('checking: ', x, ' ', y, ' ', constraints.satisfy(x, y, constraint))
 
         #print('Domain ', x, ' ', domain[xi])
@@ -33,6 +37,8 @@ def solutionExists(domain):
     return True
 
 def AC1(g, constraints, domain, node, edge, domainSize):
+    global cnt
+    cnt = 0
     q = []
 
     for i in g.edges:

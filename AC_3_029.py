@@ -1,8 +1,10 @@
 import queue
 import constraints_029
 
+cnt = 0
 
 def revise(xi, xj, constraint, domain):
+    global cnt
     revised = False
     temp = []
     for i in domain[xi]:
@@ -13,6 +15,7 @@ def revise(xi, xj, constraint, domain):
         for y in domain[xj]:
             if(constraints_029.satisfy(x, y, constraint) == True):
                 single = True
+                cnt += 1
 
         if(single == False):
             domain[xi].remove(x)
@@ -23,6 +26,8 @@ def revise(xi, xj, constraint, domain):
     return revised
 
 def AC3(g, constraints, domain, node, edge, domainSize):
+    global cnt
+    cnt = 0
     q = queue.Queue()
 
     for i in g.edges:

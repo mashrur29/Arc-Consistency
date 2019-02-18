@@ -3,6 +3,7 @@ import random
 import networkx as nw
 import matplotlib.pyplot as plt
 from copy import deepcopy
+import main_029 as mn
 from main_029 import executeAC1, executeAC2, executeAC3, executeAC4
 
 lim = 11
@@ -293,4 +294,141 @@ def visualize_domainReduction(domainSiz):
     plt.suptitle('@mashrur')
     plt.legend(loc='upper left')
     plt.savefig('node_domain_reduction.png')
+    plt.show()
+
+
+def visualize_isSatNode(domainSiz):
+    xAc1 = []
+    yAc1 = []
+    xAc2 = []
+    yAc2 = []
+    xAc3 = []
+    yAc3 = []
+    xAc4 = []
+    yAc4 = []
+
+    for node in range(1, 101, 20):
+        print(node)
+        xAc1.append(node)
+        xAc2.append(node)
+        xAc3.append(node)
+        xAc4.append(node)
+        timeAc1 = 0
+        timeAc2 = 0
+        timeAc3 = 0
+        timeAc4 = 0
+
+        for i in range(10):
+            csp = generateCSP(node, domainSiz)
+            g = csp[0]
+            constraints = csp[1]
+            domain = csp[2]
+            edge = csp[3]
+            domainSize = csp[4]
+            mn.executeAC1(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
+            mn.executeAC2(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
+            mn.executeAC3(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
+            mn.executeAC4(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
+            timeAc1 += mn.cnt1
+            timeAc2 += mn.cnt2
+            timeAc3 += mn.cnt3
+            timeAc4 += mn.cnt4
+
+        timeAc1 /= 10
+        timeAc2 /= 10
+        timeAc3 /= 10
+        timeAc4 /= 10
+        yAc1.append(timeAc1)
+        yAc2.append(timeAc2)
+        yAc3.append(timeAc3)
+        yAc4.append(timeAc4)
+
+    plt.plot(xAc1, yAc1, color='g', label='AC 1')
+    plt.plot(xAc2, yAc2, color='b', label='AC 2')
+    plt.plot(xAc3, yAc3, color='r', label='AC 3')
+    plt.plot(xAc4, yAc4, color='orange', label='AC 4')
+    plt.xlabel('Number of Node')
+    plt.ylabel('Number of Satisfactions')
+    plt.title('Comparison of Arc Consistency Algorithm')
+    plt.suptitle('@mashrur')
+    plt.legend(loc='upper left')
+    plt.savefig('node_satisfaction_small.png')
+    plt.show()
+
+def visualize_isSatEdge(domainSz):
+    xAc1 = []
+    yAc1 = []
+    xAc2 = []
+    yAc2 = []
+    xAc3 = []
+    yAc3 = []
+    xAc4 = []
+    yAc4 = []
+
+    xAc1.append(0)
+    xAc2.append(0)
+    xAc3.append(0)
+    xAc4.append(0)
+
+    yAc1.append(0)
+    yAc2.append(0)
+    yAc3.append(0)
+    yAc4.append(0)
+
+    for edge in range(1, 110, 10):
+        print(edge)
+        xAc1.append(edge)
+        xAc2.append(edge)
+        xAc3.append(edge)
+        xAc4.append(edge)
+
+        timeAc1 = 0
+        timeAc2 = 0
+        timeAc3 = 0
+        timeAc4 = 0
+        domainSize = domainSz
+        node = randInt(edge+1, 2*edge)
+
+        for p in range(10):
+            constraints = {}
+            domain = [[0 for x in range(domainSize)] for y in range(node)]  # node x domainSize size list
+
+            g = nw.gnm_random_graph(node, edge, False)
+
+            for i in g.edges:
+                constraints[i] = random.randint(0, 10)
+                constraints[(i[1], i[0])] = constraints[i] + lim
+
+            for i in range(node):
+                for j in range(domainSize):
+                    domain[i][j] = randInt(1, 100)
+
+            mn.executeAC1(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
+            mn.executeAC2(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
+            mn.executeAC3(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
+            mn.executeAC4(node, edge, domainSize, deepcopy(g), deepcopy(constraints), deepcopy(domain))
+            timeAc1 += mn.cnt1
+            timeAc2 += mn.cnt2
+            timeAc3 += mn.cnt3
+            timeAc4 += mn.cnt4
+
+        timeAc1 /= 10
+        timeAc2 /= 10
+        timeAc3 /= 10
+        timeAc4 /= 10
+        yAc1.append(timeAc1)
+        yAc2.append(timeAc2)
+        yAc3.append(timeAc3)
+        yAc4.append(timeAc4)
+
+    plt.plot(xAc1, yAc1, color='g', label='AC 1')
+    plt.plot(xAc2, yAc2, color='b', label='AC 2')
+    plt.plot(xAc3, yAc3, color='r', label='AC 3')
+    plt.plot(xAc4, yAc4, color='orange', label='AC 4')
+    plt.xlabel('Number of Edge')
+    plt.ylabel('Number of Satisfactions')
+    plt.title('Comparison of Arc Consistency Algorithm')
+    plt.suptitle('@mashrur')
+    plt.legend(loc='upper left')
+    # plt.savefig('edge_satisfactions_large.png')
     plt.show()
