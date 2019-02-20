@@ -50,10 +50,10 @@ def executeAC4(node, edge, domainSize, g, constraints, domain):
 
 
 if __name__ == '__main__':
-    # vis.visualize_nodes(100)
+    vis.visualize_nodes(20)
     # vis.visualize_density(100)
     # vis.visualize_edge(20)
     # vis.visualize_domainReduction(30)
-    vis.visualize_isSatNode(30)
+    # vis.visualize_isSatNode(30)
     # vis.visualize_isSatEdge(100)
     print('---- DONE ----')

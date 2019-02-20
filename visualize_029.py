@@ -77,6 +77,18 @@ def visualize_nodes(domainSiz):
         yAc3.append(timeAc3)
         yAc4.append(timeAc4)
 
+    print('AC 1')
+    for i in yAc1:
+        print(i)
+    print('AC 2')
+    for i in yAc2:
+        print(i)
+    print('AC 3')
+    for i in yAc3:
+        print(i)
+    print('AC 4')
+    for i in yAc4:
+        print(i)
     plt.plot(xAc1, yAc1, color='g', label='AC 1')
     plt.plot(xAc2, yAc2, color='b', label='AC 2')
     plt.plot(xAc3, yAc3, color='r', label='AC 3')
